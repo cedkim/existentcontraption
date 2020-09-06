@@ -18,7 +18,6 @@ class ExistentContraption:
         if (len(self.levelXml) > 0):
             xmlRoot = ET.fromstring(self.levelXml)
             dwg = svgwrite.Drawing('existentcontraption.svg', size=(str(100 * self.scale) + 'mm', str(100 * self.scale) + 'mm'), profile='tiny')
-
             return dwg.toString()
         else:
             return '<!-- Error: No level XML provided -->'
