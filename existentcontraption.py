@@ -8,8 +8,9 @@ little desk toys.
 """
 
 class ExistentContraption:
-    def __init__(self, levelXml):
+    def __init__(self, levelXml, scale=1):
         self.levelXml = levelXml
+        self.scale = scale
 
 if __name__ == '__main__':
-    # TODO: create CLI interface
+    pass
