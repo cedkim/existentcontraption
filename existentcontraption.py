@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Existent Contraption Tool
+Existant Contraption Tool
 ------
 Convert Fantastic Contraption design XML to
 SVG files that can be used for cutting out
@@ -11,28 +11,28 @@ import svgwrite
 import xml.etree.ElementTree as ET
 
 class ECConstants:
-    """Existent Contraption constant definition class
-    This class simply contains constants used in Existent Contraption.
+    """Existant Contraption constant definition class
+    This class simply contains constants used in Existant Contraption.
     """
     LASERTOLERANCE = 0.03
     FDMTOLERANCE = 0.5
 
-class ExistentContraption:
-    """The main ExistentContraption class
+class ExistantContraption:
+    """The main ExistantContraption class
 
     Constructor arguments:
     designXml -- the XML save/retrieve data of the FC design to convert
     scale (default=1) -- an integer to multiply the physical size of the SVG with
     """
     def __init__(self, designXml='', scale=1):
-        """Constructor function for the main ExistentContraption class
+        """Constructor function for the main ExistantContraption class
         (arguments are listed in class definition)
         """
         # Adds arguments to object
         self.designXml = designXml
         self.scale = scale
     def convertToSvg(self, tolerance=0.03):
-        """A function to convert an ExistentContraption class
+        """A function to convert an ExistantContraption class
            that has valid XML to a list of SVGs that can be
            used for manufacturing.
         
