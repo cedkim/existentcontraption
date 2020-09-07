@@ -52,12 +52,12 @@ class ExistentContraption:
             for child in xmlRoot.find('level').find('playerBlocks'): # iterate through all design blocks
                 if (child.tag == 'SolidRod') or (child.tag == 'HollowRod'): # check if block is a rod
                     for _ in range(2): # repeat adding rods two times to prevent model from collapsing
-                        newDwg = svgwrite.drawing.Drawing(size=(str((int(child.find('width')) / (2 / self.scale)) + 2) + 'mm', str((10 * self.scale) + 2) + 'mm')) # create a drawing with the appropriate size
-                        newDwg.add(newDwg.rect(insert=(1, 1), size=(int(child.find('width')) / (2 / self.scale), 10 * self.scale), stroke='black', stroke_width=self.scale*0.8)) # add the rod to the drawing
+                        newDwg = svgwrite.drawing.Drawing(size=(str((int(child.find('width').text) / (2 / self.scale)) + 2) + 'mm', str((10 * self.scale) + 2) + 'mm')) # create a drawing with the appropriate size
+                        newDwg.add(newDwg.rect(insert=(1, 1), size=(int(child.find('width').text) / (2 / self.scale), 10 * self.scale), stroke='black', stroke_width=self.scale*0.8)) # add the rod to the drawing
                         newDwg.add(newDwg.circle(center=(8 * self.scale, 5 * self.scale), r=2.5*self.scale, stroke='black', stroke_width=self.scale*0.8)) # add the first hinge slot
                         newDwg.add(newDwg.rect(insert=(2 * self.scale, materialThickness / 2), size=(4 * self.scale, materialThickness), stroke='black', stroke_width=self.scale*0.8)) # add hole in first hinge slot
-                        newDwg.add(newDwg.circle(center=((int(child.find('width')) / (2 / self.scale)) - 8, 5 * self.scale), r=2.5*self.scale, stroke='black', stroke_width=self.scale*0.8)) # add the second hinge slot
-                        newDwg.add(newDwg.rect(insert=(int(child.find('width')) - (2 * self.scale), materialThickness / 2), size=(4 * self.scale, materialThickness), stroke='black', stroke_width=self.scale*0.8)) # add hole in second hinge spot
+                        newDwg.add(newDwg.circle(center=((int(child.find('width').text) / (2 / self.scale)) - 8, 5 * self.scale), r=2.5*self.scale, stroke='black', stroke_width=self.scale*0.8)) # add the second hinge slot
+                        newDwg.add(newDwg.rect(insert=(int(child.find('width').text) - (2 * self.scale), materialThickness / 2), size=(4 * self.scale, materialThickness), stroke='black', stroke_width=self.scale*0.8)) # add hole in second hinge spot
                         dwgList.append(newDwg) # add the drawing to the list of drawings
                         thickness += 1 # increment the thickness (in layers)
             for _ in range(thickness): # iterate through layers
