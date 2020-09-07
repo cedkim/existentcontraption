@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import sys
 from existentcontraption import *
 import fire
 def convertFromXmlFile(path='',outputfolder='',materialthickness=5,scale=1,machine=''):

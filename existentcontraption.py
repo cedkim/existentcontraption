@@ -7,7 +7,6 @@ SVG files that can be used for cutting out
 little desk toys.
 """
 
-import sys
 import xml.etree.ElementTree as ET
 import svgwrite
 
