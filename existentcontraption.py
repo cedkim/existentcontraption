@@ -65,7 +65,7 @@ class ExistentContraption:
                 dwgList.append(newDwg) # add the jofloat connector drawing to the list of drawings
             svgOutputs = [] # define a list for SVG string outputs
             for dwg in dwgList: # iterate over all drawings
-                svgOutputs.append(dwg.toString()) # convert the drawings to SVG strings and add them to the output list
+                svgOutputs.append(dwg.tostring()) # convert the drawings to SVG strings and add them to the output list
             return svgOutputs # return the output values
         else: # runs if design XML is an empty string
             return '<!-- Error: No design XML provided -->' # returns an error in case no XML is provided
