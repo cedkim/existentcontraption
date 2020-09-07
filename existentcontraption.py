@@ -28,6 +28,7 @@ class ExistentContraption:
         """Constructor function for the main ExistentContraption class
         (arguments are listed in class definition)
         """
+        # Adds arguments to object
         self.designXml = designXml
         self.scale = scale
     def convertToSvg(self, tolerance=0.03):
@@ -41,20 +42,20 @@ class ExistentContraption:
         
         Returns a list of SVG strings
         """
-        if (len(self.designXml) > 0):
-            xmlRoot = ET.fromstring(self.designXml)
-            dwgList = []
-            for child in xmlRoot.find('level').find('playerBlocks'):
-                if child.tag == 'SolidRod':
-                    newDwg = svgwrite.drawing.Drawing(size=(str((int(child.find('width')) / (2 / this.scale)) + 2) + 'mm', str((int(child.find('height')) / (2 / this.scale)) + 2) + 'mm'))
-                    newDwg.add(newDwg.rect(insert=(this.scale, this.scale), size=(int(child.find('width') / (2 / this.scale))), int(child.find('height') / (2 / this.scale)))), stroke='black', stroke-width=this.scale))
-                    dwgList.append(newDwg)
-            svgOutputs = []
-            for dwg in dwgList:
-                svgOutputs.append(dwg.toString())
-            return svgOutputs
-        else:
-            return '<!-- Error: No level XML provided -->'
+        if (len(self.designXml) > 0): # checks if design XML actually exists
+            xmlRoot = ET.fromstring(self.designXml) # parse XML from string
+            dwgList = [] # create list of drawings
+            for child in xmlRoot.find('level').find('playerBlocks'): # iterate through all design blocks
+                if child.tag == 'SolidRod': # check if block is a solid rod
+                    newDwg = svgwrite.drawing.Drawing(size=(str((int(child.find('width')) / (2 / this.scale)) + 2) + 'mm', str((int(child.find('height')) / (2 / this.scale)) + 2) + 'mm')) # create a drawing with the appropriate size
+                    newDwg.add(newDwg.rect(insert=(this.scale, this.scale), size=(int(child.find('width') / (2 / this.scale))), int(child.find('height') / (2 / this.scale)))), stroke='black', stroke-width=this.scale)) # add the rod to the drawing
+                    dwgList.append(newDwg) # add the drawing to the list of drawings
+            svgOutputs = [] # define a list for SVG string outputs
+            for dwg in dwgList: # iterate over all drawings
+                svgOutputs.append(dwg.toString()) # convert the drawings to SVG strings and add them to the list
+            return svgOutputs # return the output values
+        else: # runs if design XML is an empty string
+            return '<!-- Error: No design XML provided -->' # returns an error in case no XML is provided
 
 if __name__ == '__main__':
     """The main entrypoint for the EC CLI tool"""
