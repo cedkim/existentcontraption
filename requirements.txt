@@ -1,2 +1,2 @@
 svgwrite==1.4
-fire==0.3.1
+fire==0.3.1 # only needed for CLI
