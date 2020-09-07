@@ -22,9 +22,9 @@ class ExistentContraption:
 
     Constructor arguments:
     designXml -- the XML save/retrieve data of the FC design to convert
-    scale (default=1) -- an floateger to multiply the physical size of the SVG with
+    scale (default=1.5) -- an float to multiply the physical size of the SVG with
     """
-    def __init__(self, designXml='', scale=1):
+    def __init__(self, designXml='', scale=1.5):
         """Constructor function for the main ExistentContraption class
         (arguments are listed in class definition)
         """
