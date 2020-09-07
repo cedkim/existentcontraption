@@ -52,16 +52,16 @@ class ExistentContraption:
                 if (child.tag == 'SolidRod') or (child.tag == 'HollowRod'): # check if block is a rod
                     for _ in range(2): # repeat adding rods two times to prevent model from collapsing
                         newDwg = svgwrite.drawing.Drawing(size=(str((float(child.find('width').text) / (2 / self.scale)) + 2) + 'mm', str((10 * self.scale) + 2) + 'mm')) # create a drawing with the appropriate size
-                        newDwg.add(newDwg.rect(insert=(1, 1), size=(float(child.find('width').text) / (2 / self.scale), 10 * self.scale), stroke='black', stroke_width=self.scale*0.8)) # add the rod to the drawing
-                        newDwg.add(newDwg.circle(center=(8 * self.scale, 5 * self.scale), r=2.5*self.scale, stroke='black', stroke_width=self.scale*0.8)) # add the first hinge slot
-                        newDwg.add(newDwg.rect(insert=(2 * self.scale, materialThickness / 2), size=(4 * self.scale, materialThickness), stroke='black', stroke_width=self.scale*0.8)) # add hole in first hinge slot
-                        newDwg.add(newDwg.circle(center=((float(child.find('width').text) / (2 / self.scale)) - 8, 5 * self.scale), r=2.5*self.scale, stroke='black', stroke_width=self.scale*0.8)) # add the second hinge slot
-                        newDwg.add(newDwg.rect(insert=(float(child.find('width').text) - (2 * self.scale), materialThickness / 2), size=(4 * self.scale, materialThickness), stroke='black', stroke_width=self.scale*0.8)) # add hole in second hinge spot
+                        newDwg.add(newDwg.rect(insert=(1, 1), size=(str(float(child.find('width').text) / (2 / self.scale)) + 'mm', str(10 * self.scale) + 'mm'), stroke='black', fill='white', stroke_width=self.scale*0.8)) # add the rod to the drawing
+                        newDwg.add(newDwg.circle(center=(str(8 * self.scale) + 'mm', str(5 * self.scale) + 'mm'), r=str(2.5*self.scale) + 'mm', stroke='black', fill='white', stroke_width=self.scale*0.8)) # add the first hinge slot
+                        newDwg.add(newDwg.rect(insert=(2 * self.scale, materialThickness / 2), size=(4 * self.scale, materialThickness), stroke='black', fill='white', stroke_width=self.scale*0.8)) # add hole in first hinge slot
+                        newDwg.add(newDwg.circle(center=(str((float(child.find('width').text) / (2 / self.scale)) - 8) + 'mm', str(5 * self.scale) + 'mm'), r=str(2.5*self.scale) + 'mm', stroke='black', fill='white', stroke_width=self.scale*0.8)) # add the second hinge slot
+                        newDwg.add(newDwg.rect(insert=(str(float(child.find('width').text) - (2 * self.scale)) + 'mm', str(materialThickness / 2) + 'mm'), size=(str(4 * self.scale) + 'mm', str(materialThickness) + 'mm'), stroke='black', fill='white', stroke_width=self.scale*0.8)) # add hole in second hinge spot
                         dwgList.append(newDwg) # add the drawing to the list of drawings
                         thickness += 1 # increment the thickness (in layers)
             for _ in range(thickness): # iterate through layers
                 newDwg = svgwrite.drawing.Drawing(size=(str((thickness * materialThickness) + 2) + 'mm', str(((4 * self.scale) - tolerance) + 2) + 'mm')) # create a drawing for the jofloat connector
-                newDwg.add(newDwg.rect(insert=(1, 1), size=(float(thickness * materialThickness), float((4 * self.scale) - tolerance)), stroke='black', stroke_width=self.scale*0.8)) # add the jofloat connector to the drawing
+                newDwg.add(newDwg.rect(insert=(1, 1), size=(float(thickness * materialThickness), str((4 * self.scale) - tolerance)) + 'mm', stroke='black', stroke_width=self.scale*0.8)) # add the jofloat connector to the drawing
                 dwgList.append(newDwg) # add the jofloat connector drawing to the list of drawings
             svgOutputs = [] # define a list for SVG string outputs
             for dwg in dwgList: # iterate over all drawings
