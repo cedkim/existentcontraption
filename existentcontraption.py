@@ -47,8 +47,10 @@ class ExistentContraption:
             dwgList = [] # create list of drawings
             for child in xmlRoot.find('level').find('playerBlocks'): # iterate through all design blocks
                 if child.tag == 'SolidRod': # check if block is a solid rod
-                    newDwg = svgwrite.drawing.Drawing(size=(str((int(child.find('width')) / (2 / this.scale)) + 2) + 'mm', str((int(child.find('height')) / (2 / this.scale)) + 2) + 'mm')) # create a drawing with the appropriate size
-                    newDwg.add(newDwg.rect(insert=(this.scale, this.scale), size=(int(child.find('width') / (2 / this.scale))), int(child.find('height') / (2 / this.scale)))), stroke='black', stroke-width=this.scale)) # add the rod to the drawing
+                    newDwg = svgwrite.drawing.Drawing(size=(str((int(child.find('width')) / (2 / self.scale)) + 2) + 'mm', str((10 * self.scale) + 2) + 'mm')) # create a drawing with the appropriate size
+                    newDwg.add(newDwg.rect(insert=(self.scale + 1, self.scale + 1), size=(int(child.find('width')) / (2 / self.scale), 10 * self.scale), stroke='black', stroke-width=self.scale)) # add the rod to the drawing
+                    newDwg.add(newDwg.circle(center=(8, 5 * self.scale), r=2.5*self.scale)) # add the first hinge slot
+                    newDwg.add(newDwg.circle(center=((int(child.find('width')) / (2 / self.scale)) - 8, 5 * self.scale), r=2.5*self.scale)) # add the second hinge slot
                     dwgList.append(newDwg) # add the drawing to the list of drawings
             svgOutputs = [] # define a list for SVG string outputs
             for dwg in dwgList: # iterate over all drawings
