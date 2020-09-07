@@ -46,7 +46,7 @@ class ExistentContraption:
             xmlRoot = ET.fromstring(self.designXml) # parse XML from string
             dwgList = [] # create list of drawings
             for child in xmlRoot.find('level').find('playerBlocks'): # iterate through all design blocks
-                if child.tag == 'SolidRod': # check if block is a solid rod
+                if (child.tag == 'SolidRod') or (child.tag == 'HollowRod'): # check if block is a rod
                     newDwg = svgwrite.drawing.Drawing(size=(str((int(child.find('width')) / (2 / self.scale)) + 2) + 'mm', str((10 * self.scale) + 2) + 'mm')) # create a drawing with the appropriate size
                     newDwg.add(newDwg.rect(insert=(self.scale + 1, self.scale + 1), size=(int(child.find('width')) / (2 / self.scale), 10 * self.scale), stroke='black', stroke-width=self.scale)) # add the rod to the drawing
                     newDwg.add(newDwg.circle(center=(8, 5 * self.scale), r=2.5*self.scale)) # add the first hinge slot
