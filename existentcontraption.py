@@ -31,7 +31,7 @@ class ExistentContraption:
         # Adds arguments to object
         self.designXml = designXml
         self.scale = scale
-    def convertToSvg(self, tolerance=0.03):
+    def convertToSvg(self, tolerance=0.03, materialThickness=5):
         """A function to convert an ExistentContraption class
            that has valid XML to a list of SVGs that can be
            used for manufacturing.
@@ -39,12 +39,15 @@ class ExistentContraption:
         Keyword arguments:
         tolerance (default=0.03) -- the tolerance value in mm, recommended
                                     values are in the ECConstants class
-        
+        materialThickness (default=5) -- the thickness of a material sheet in
+                                         millimeters
+
         Returns a list of SVG strings
         """
         if (len(self.designXml) > 0): # checks if design XML actually exists
             xmlRoot = ET.fromstring(self.designXml) # parse XML from string
             dwgList = [] # create list of drawings
+            thickness = 0 # create variable to store thickness in layers
             for child in xmlRoot.find('level').find('playerBlocks'): # iterate through all design blocks
                 if (child.tag == 'SolidRod') or (child.tag == 'HollowRod'): # check if block is a rod
                     for _ in range(2): # repeat adding rods two times to prevent model from collapsing
@@ -53,6 +56,7 @@ class ExistentContraption:
                         newDwg.add(newDwg.circle(center=(8 * self.scale, 5 * self.scale), r=2.5*self.scale)) # add the first hinge slot
                         newDwg.add(newDwg.circle(center=((int(child.find('width')) / (2 / self.scale)) - 8, 5 * self.scale), r=2.5*self.scale)) # add the second hinge slot
                         dwgList.append(newDwg) # add the drawing to the list of drawings
+                        thickness += 1
             svgOutputs = [] # define a list for SVG string outputs
             for dwg in dwgList: # iterate over all drawings
                 svgOutputs.append(dwg.toString()) # convert the drawings to SVG strings and add them to the list
