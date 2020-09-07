@@ -16,7 +16,7 @@ testcli:
   script:
     - mkdir clioutput
     - chmod -x eccli.py
-    - python -m eccli.py --path="testxml/punchypunch" --outputfolder=".temp" --materialthickness=5 --scale=1 --machine=laser
+    - python eccli.py --path="testxml/punchypunch" --outputfolder=".temp" --materialthickness=5 --scale=1 --machine=laser
   artifacts:
     paths:
       - clioutput/*.svg
