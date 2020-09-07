@@ -1,0 +1,14 @@
+image: python:latest
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+before_script:
+  - python -V
+  - pip install pylint
+  - pip install -r requirements.txt
+lint:
+  script:
+    - pylint existentcontraption.py
