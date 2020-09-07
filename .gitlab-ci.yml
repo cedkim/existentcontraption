@@ -14,5 +14,10 @@ lint:
     - pylint --disable=R,C,W existentcontraption.py
 testcli:
   script:
-    - mkdir .temp
-    - ./eccli.py --path="testxml/punchypunch" --outputfolder=".temp" --materialthickness=5 --scale=1 --machine='laser'
+    - mkdir clioutput
+    - chmod -x eccli.py
+    - ./eccli.py --path="testxml/punchypunch" --outputfolder=".temp" --materialthickness=5 --scale=1 --machine=laser
+  artifacts:
+    paths:
+      - clioutput/*.svg
+    expire_in: never
