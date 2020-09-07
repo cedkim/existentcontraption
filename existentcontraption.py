@@ -7,8 +7,8 @@ SVG files that can be used for cutting out
 little desk toys.
 """
 
-import svgwrite
 import xml.etree.ElementTree as ET
+import svgwrite
 
 class ECConstants:
     """Existent Contraption constant definition class
@@ -35,7 +35,7 @@ class ExistentContraption:
         """A function to convert an ExistentContraption class
            that has valid XML to a list of SVGs that can be
            used for manufacturing.
-        
+
         Keyword arguments:
         tolerance (default=0.03) -- the tolerance value in mm, recommended
                                     values are in the ECConstants class
