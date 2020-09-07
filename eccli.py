@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import existentcontraption
 import fire
 def convertFromXmlFile(path='',outputfolder='',materialthickness=5,scale=1,machine=''):

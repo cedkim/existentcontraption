@@ -12,3 +12,7 @@ before_script:
 lint:
   script:
     - pylint --disable=R,C,W existentcontraption.py
+testcli:
+  script:
+    - mkdir .temp
+    - ./eccli.py --path="testxml/punchypunch" --outputfolder=".temp" --materialthickness=5 --scale=1 --machine='laser'
