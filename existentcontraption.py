@@ -61,7 +61,7 @@ class ExistentContraption:
                         thickness += 1 # increment the thickness (in layers)
             for _ in range(thickness): # iterate through layers
                 newDwg = svgwrite.drawing.Drawing(size=(str((thickness * materialThickness) + 2) + 'mm', str(((4 * self.scale) - tolerance) + 2) + 'mm')) # create a drawing for the joint connector
-                newDwg.add(newDwg.rect(insert=(1, 1), size=(int(thickness * materialThickness), int((4 * self.scale) - tolerance), stroke='black', stroke-width=self.scale*0.8)) # add the joint connector to the drawing
+                newDwg.add(newDwg.rect(insert=(1, 1), size=(int(thickness * materialThickness), int((4 * self.scale) - tolerance)), stroke='black', stroke-width=self.scale*0.8)) # add the joint connector to the drawing
                 dwgList.append(newDwg) # add the joint connector drawing to the list of drawings
             svgOutputs = [] # define a list for SVG string outputs
             for dwg in dwgList: # iterate over all drawings
