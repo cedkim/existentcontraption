@@ -1,3 +1,2 @@
 svgwrite==1.4
 fire==0.3.1 # only needed for CLI
-svgnest==0.2 # only needed for ecmanufacture and CLI
